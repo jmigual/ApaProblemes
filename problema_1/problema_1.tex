@@ -1,0 +1,46 @@
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts}
+\usepackage[catalan]{babel} % Language 
+\usepackage{fontspec}
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.2cm}
+
+\title{\textsc{APA Problemes} \\ Problema 3 Màxima versemblança}
+\author{Lluc Bové \and Raúl Ibàñez \and Joan Marcè \and Aleix Trassera}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+\item \textbf{Escriviu la funció de densitat de probabilitat per un xn qualsevol i construïu la funció log-versemblança (negativa) de la mostra.}
+
+\item \textbf{Trobeu els estimadors de màxima versemblança $\hat{\mu}$ i $\hat{\sigma}^2$ per $\mu$ i per $\sigma^2$, a partir de la mostra.}
+
+\item \textbf{Demostreu que realment són màxims (i no extrems qualssevol).}
+
+\item \textbf{Calculeu els biaixos dels dos estimadors. Determineu si l'estimador per $\mu$ és consistent.}
+
+\item \textbf{Calculeu la variança de l'estimador per $\mu$, de 3 maneres (que han de coincidir). Pista: useu que si $X_n, X_m \sim N(\mu, \sigma^2)$, llavors:}
+
+$$ \mathbb{E}[X_n · X_m] = 
+\begin{cases}
+\mu^2 & \text{ si } n \ne m \\
+\mu^2 + \sigma^2 & \text{ si } n = m
+\end{cases}$$
+
+\begin{enumerate}
+    \item Inserint directament el valor de l'estimador i utilitzant les propietats de la variància. 
+    \item Usant la coneguda fòrmula $Var[\hat{\theta}] = \mathbb{E}[\hat{\theta}^2] - (\mathbb{E}[\hat{\theta}])^2$.
+    \item Utilitzant la definició de la variància $Var[\hat{\theta}] = \mathbb{E}[(\mathbb{E}[\hat{\theta}^2] - \hat{\theta})^2]$.
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}

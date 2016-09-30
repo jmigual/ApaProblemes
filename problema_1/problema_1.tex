@@ -18,8 +18,12 @@
 
 \maketitle
 
+\textbf{Considerem un experiment aleatori en què mesurem una determinada variable aleatòria $X$, que segueix una distribució gaussiana, cosa que escrivim $X \sim N(\mu, \sigma^2)$. Prenem $N$ mesures independents de $X$ i obtenim una mostra aleatòria simple $\{x_1, ..., x_N\}$ on cada $x_n$ és una realització de $X$, per $n=1,...,N$. Es demana:}
+
 \begin{enumerate}
-\item \textbf{Escriviu la funció de densitat de probabilitat per un xn qualsevol i construïu la funció log-versemblança (negativa) de la mostra.}
+\item \textbf{Escriviu la funció de densitat de probabilitat per un $x_n$ qualsevol i construïu la funció log-versemblança (negativa) de la mostra.}
+
+$$p(x, \sigma^2, \mu) = \frac{1}{2\pi\sigma} exp(-\frac{(x - \mu)^2}{2\sigma^2})$$
 
 \item \textbf{Trobeu els estimadors de màxima versemblança $\hat{\mu}$ i $\hat{\sigma}^2$ per $\mu$ i per $\sigma^2$, a partir de la mostra.}
 

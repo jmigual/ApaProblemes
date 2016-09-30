@@ -6,6 +6,7 @@
 \usepackage{fontspec}
 \usepackage[margin=2cm]{geometry}
 \usepackage{graphicx}
+\usepackage[makeroom]{cancel}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.2cm}
@@ -23,13 +24,40 @@
 \begin{enumerate}
 \item \textbf{Escriviu la funció de densitat de probabilitat per un $x_n$ qualsevol i construïu la funció log-versemblança (negativa) de la mostra.}
 
-$$p(x, \sigma^2, \mu) = \frac{1}{2\pi\sigma} exp(-\frac{(x - \mu)^2}{2\sigma^2})$$
+$$p(x_n, \sigma^2, \mu) = \frac{1}{\sqrt{2\pi\sigma}} exp\left(-\frac{(x_n - \mu)^2}{2\sigma^2}\right)$$
+
+$$ -l(\theta) = -l(\mu,\sigma^2) = -\sum_{n=1}^2N ln(p(x_n, \mu, \sigma^2)) = - \sum_{n=1}^N ln \left\{\frac{1}{\sqrt{2\pi\sigma}} exp\left(-\frac{(x_n - \mu)^2}{2\sigma^2}\right) \right\}$$
 
 \item \textbf{Trobeu els estimadors de màxima versemblança $\hat{\mu}$ i $\hat{\sigma}^2$ per $\mu$ i per $\sigma^2$, a partir de la mostra.}
 
+$$\text{Màximitzar} l(\theta) \leftrightarrow \text{Minimitzar} -l(\theta)$$
+
+$$ \frac{\partial(-l)}{\partial\mu} = -\sum_{n=1}^N \frac{2(x_n - \mu)}{2\sigma^2} = 0 \implies 
+\sum_{n=1}^N x_n - \mu = 0 \implies \sum_{n=1}^N x_n = N·\mu \implies \boxed{\hat{\mu} = \sum_{n=1}^N \frac{x_n}{N}}$$ 
+
+$$
+\frac{\partial(-l)}{\partial\sigma^2} = \frac{N}{2\sigma^2} - \frac{1}{2\sigma^4}\sum_{n=1}^N (x_n - \mu)^2 = 0 \longrightarrow
+\begin{aligned}
+\footnotesize
+\text{Substituïm } \mu \text{ per}\\
+\footnotesize
+\hat{\mu} \text{ i aïllem } \sigma^2 
+\end{aligned} 
+\implies \boxed{\hat{\sigma}^2 = \frac{1}{N} \sum_{n=1}^N (x_n - \hat{\mu})^2} $$
+
 \item \textbf{Demostreu que realment són màxims (i no extrems qualssevol).}
 
+$$ \sigma^2 > 0 \implies \frac{\partial^2(-l)}{\partial^2\mu} > 0 \implies \hat{\mu} \text{ és mínim}$$
+
+$$ \hat{\sigma}^2 = \frac{1}{N} \sum_{n=1}^N (x_n - \hat{\mu})^2 \rightarrow \hat{\sigma}^2 \text{ és dependent de } \hat{\mu}$$
+
 \item \textbf{Calculeu els biaixos dels dos estimadors. Determineu si l'estimador per $\mu$ és consistent.}
+
+$$ bias(\hat{\theta}) := \mathbb{E}(\hat{\theta}) - \theta \implies bias(\hat{\mu}) = \underbrace{\mathbb{E}(\hat{\mu})}_{\mu} - \mu = \mu - \mu = 0 $$
+
+$$ \mathbb{E}(\hat{\mu}) = \mathbb{E}\underbrace{\left(\sum_{n=1}^N \frac{x_n}{N}\right)}_{\text{trobat abans}} = \frac{1}{N}\sum_{n=1}^N \mathbb{E}(x_n) = \frac{1}{N}\sum_{n=1}^N \mu = \frac{\cancel{N}}{\cancel{N}}\mu = \mu$$
+
+% Falta afegir el càlcul del vias de sigma^2
 
 \item \textbf{Calculeu la variança de l'estimador per $\mu$, de 3 maneres (que han de coincidir). Pista: useu que si $X_n, X_m \sim N(\mu, \sigma^2)$, llavors:}
 

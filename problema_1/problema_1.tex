@@ -141,9 +141,17 @@ $$ \mathbb{E}[X_n · X_m] =
 
 \item \textbf{Per determinar la velocitat màxima d'un prototip d'avió es van fer 15 proves (caríssimes) amb els resultats 422.2, 418.7, 425.6, 420.3, 425.8, 423.1, 431.5, 428.2, 438.3, 434.0, 411.3, 417.2, 413.5, 441.3, 423.0, expressats en $m/s$. Suposant que aquesta velocitat màxima és gaussiana, quins valors estimaríeu per $\mu$ i per $\sigma$?}
 
+Utilitzant la fórmula anterior: 
+
+$$ \hat{\mu} = \sum_{n=1}^N \frac{x_n}{N} = 424,93 $$
+
+$$ \hat{\sigma} = \frac{1}{N} \sum_{n=1}^N (x_n - \hat{\mu})^2 = 69 $$
+
 \item \textbf{\emph{[R]} Fixeu unes $ \mu $ i $ \sigma^2 $ al vostre gust i genereu 1.000 mostres aleatòries simples Gaussianes de mida $ N = 50 $ (noteu que no cal emmagatzemar-les); utilitzeu les mostres (que han de ser m.a.s. i independents entre sí) per estimar els biaixos i variàncies dels valors teòrics $ \mu $ i $ \sigma^2 $. Compareu els resultats respecte els valors teòrics dels estimadors.}
 
 En el següent script s'inclou el codi per solucionar el problema. Es creen 1000 conjunts de mida 50 i es calcula $ bias(\mu), bias(\sigma^2), Var(\mu)\text{ i } Var(\sigma^2)$.
+
+\vspace{0.5cm}
 
 \lstinputlisting[language=R]{L1_problemes.R}
 

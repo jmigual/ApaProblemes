@@ -95,7 +95,7 @@ $$ bias(\hat{\sigma^2}) = \mathbb{E}(\hat{\sigma^2}) - \sigma^2 $$
 
 $$E(\hat{\sigma}^2) =  \mathbb{E}\left[ \frac{1}{N}\sum_{n=1}^N (x_n - \hat{\mu})^2\right]
 = \mathbb{E}\left[ \frac{1}{N}\sum_{n=1}^N \left(x_n^2 - 2\hat{\mu}x_n + \hat{\mu}^2\right)\right] 
-= \mathbb{E}\left[ \frac{1}{N}\sum_{n=1}^N x_n^2 - 2\hat{\mu}\sum_{n=1}^N x_n + \hat{\mu}^2\right] = $$ 
+= \mathbb{E}\left[ \frac{1}{N}\sum_{n=1}^N x_n^2 - \frac{2\hat{\mu}}{N}\sum_{n=1}^N x_n + \hat{\mu}^2\right] = $$ 
 $$\mathbb{E}\left[ \frac{1}{N}\sum_{n=1}^N x_n^2 -  \hat{\mu}^2\right]
 = \mathbb{E}\left[ \frac{1}{N}\sum_{n=1}^N x_n^2 - \left(\frac{1}{N}\sum_{n=1}^N x_i\right)^2 \right]
 = \mathbb{E}\left[ \frac{1}{N}\sum_{n=1}^N x_n^2 - \frac{1}{N^2}\left( \sum_{n=1}^{N} x_n^2 + \sum_{n=1}^{N}\sum_{\substack{m = 0 \\ m \neq n}}^{N}x_n x_m\right) \right] = $$

@@ -3,7 +3,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb,amsfonts}
 \usepackage[catalan]{babel} % Language 
-% \usepackage{fontspec} <-- AQUESTA LINEA EM PETA (RAUL)
+\usepackage{fontspec} % <-- AQUESTA LINEA EM PETA (RAUL)
 \usepackage[margin=2cm]{geometry}
 \usepackage{graphicx}
 \usepackage[makeroom]{cancel}
@@ -70,14 +70,15 @@ $$ \mathbb{E}[X_n · X_m] =
 \begin{enumerate}
     \item Inserint directament el valor de l'estimador i utilitzant les propietats de la variància.
     
-    $$ Var(\hat{\mu}) = Var(\frac{1}{N} \sum_{n=1}^{N}(x_n)) = \frac{1}{N^2} \sum_{n=1}^{N}Var(xn) = \frac{1}{N\cancel{^2}}\cancel{N}\sigma^2 = \boxed{\frac{\sigma^2}{N}}    $$
+    $$ Var(\hat{\mu}) = Var\left(\frac{1}{N} \sum_{n=1}^{N}(x_n)\right) = \frac{1}{N^2} \sum_{n=1}^{N}Var(x_n) = \frac{1}{N^{\cancel{2}}}\cancel{N}\sigma^2 = \boxed{\frac{\sigma^2}{N}}    $$
     
-    \item Usant la coneguda fòrmula $Var[\hat{\theta}] = \mathbb{E}[\hat{\theta}^2] - (\mathbb{E}[\hat{\theta}])^2$.
+    \item Usant la coneguda fórmula $Var[\hat{\theta}] = \mathbb{E}[\hat{\theta}^2] - (\mathbb{E}[\hat{\theta}])^2$.
     
-    $$ \mathbb{E}[\hat{\mu^2}]  = \mathbb{E}[(\frac{1}{N^2}\sum_{n=1}^{N}x_n)^2] = \mathbb{E}[\frac{1}{N^2}(\sum_{n=1}^{N}x_n)(\sum_{m=1}^{M}x_m)] = \frac{1}{N^2}\sum_{n=1}^{N}\sum_{m=1}^{M}\mathbb{E}[x_n x_m] = $$
-    $$ = \frac{1}{N^2}(N(\mu^2+\sigma^2)+(N^2-N(\mu^2))) = \frac{\cancel{\mu^2}+\sigma^2}{N}+\mu^2-\cancel{\frac{\mu^2}{N}} = \frac{\sigma^2}{N}+\mu^2 $$
+    $$ \mathbb{E}[\hat{\mu}^2]  = \mathbb{E}\left[\left(\frac{1}{N^2}\sum_{n=1}^{N}x_n\right)^2\right] =
+    \mathbb{E}\left[\frac{1}{N^2} \left(\sum_{n=1}^{N}x_n\right)\left(\sum_{m=1}^{M}x_m\right)\right] = \frac{1}{N^2}\sum_{n=1}^{N}\sum_{m=1}^{M}\mathbb{E}[x_n x_m] = $$
+    $$ = \frac{1}{N^2}\left(N(\mu^2+\sigma^2)+(N^2-N)\mu^2\right) = \frac{\cancel{\mu^2}+\sigma^2}{N}+\mu^2-\cancel{\frac{\mu^2}{N}} = \frac{\sigma^2}{N}+\mu^2 $$
     
-    $$ (\mathbb{E}[\mu])^2 = (\mathbb{E}[\frac{1}{N}\sum_{n=1}^{N}xn])^2 = (\frac{1}{N}\sum_{n=1}^{N}\mu)^2 = (\cancel{\frac{1}{N}} \cancel{N} \mu)^2 = \mu^2 $$
+    $$ (\mathbb{E}[\mu])^2 = \left(\mathbb{E}[\frac{1}{N}\sum_{n=1}^{N}xn]\right)^2 = \left(\frac{1}{N}\sum_{n=1}^{N}\mu\right)^2 = \left(\frac{1}{\cancel{N}} \cancel{N} \mu\right)^2 = \mu^2 $$
     
     $$ \implies  \mathbb{E}[\hat{\theta}^2] - (\mathbb{E}[\hat{\theta}])^2  = \frac{\sigma^2}{N}+\cancel{\mu^2} - \cancel{\mu^2} = \boxed{\frac{\sigma^2}{N}} $$
     

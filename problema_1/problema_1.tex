@@ -93,9 +93,9 @@ $$\lim_{N\to\infty} \frac{\sigma^2}{N} = 0$$
 
 $$ bias(\hat{\sigma^2}) = \mathbb{E}(\hat{\sigma^2}) - \sigma^2 $$
 
-$$E(\hat{\sigma^2}) =  \mathbb{E}\left[ \frac{1}{N}\sum_{n=1}^N (x_n - \hat{\mu})^2\right]
-= \mathbb{E}\left[ \frac{1}{N}\sum_{n=1}^N (x_n^2 - 2\hat{\mu}x_n + \hat{\mu}^2)\right] 
-= \mathbb{E}\left[ \frac{1}{N}\sum_{n=1}^N x_n^2 - 2\hat{\mu}\sum_{n=1^N}x_n + \hat{\mu}^2\right] = $$ 
+$$E(\hat{\sigma}^2) =  \mathbb{E}\left[ \frac{1}{N}\sum_{n=1}^N (x_n - \hat{\mu})^2\right]
+= \mathbb{E}\left[ \frac{1}{N}\sum_{n=1}^N \left(x_n^2 - 2\hat{\mu}x_n + \hat{\mu}^2\right)\right] 
+= \mathbb{E}\left[ \frac{1}{N}\sum_{n=1}^N x_n^2 - 2\hat{\mu}\sum_{n=1}^N x_n + \hat{\mu}^2\right] = $$ 
 $$\mathbb{E}\left[ \frac{1}{N}\sum_{n=1}^N x_n^2 -  \hat{\mu}^2\right]
 = \mathbb{E}\left[ \frac{1}{N}\sum_{n=1}^N x_n^2 - \left(\frac{1}{N}\sum_{n=1}^N x_i\right)^2 \right]
 = \mathbb{E}\left[ \frac{1}{N}\sum_{n=1}^N x_n^2 - \frac{1}{N^2}\left( \sum_{n=1}^{N} x_n^2 + \sum_{n=1}^{N}\sum_{\substack{m = 0 \\ m \neq n}}^{N}x_n x_m\right) \right] = $$
@@ -136,11 +136,12 @@ $$ \mathbb{E}[X_n · X_m] =
     
     \item Utilitzant la definició de la variància $Var[\hat{\theta}] = \mathbb{E}[(\mathbb{E}[\hat{\theta}] - \hat{\theta})^2]$.
     
-    $$ \mathbb{E}[(\mathbb{E}[\hat{\mu}]-\hat{\mu})^2] = \mathbb{E}[(\mu-\frac{1}{N}\sum_{n=1}^{N}x_n)^2] = \mathbb{E}(\mu-\frac{1}{N}\sum_{n=1}^{N}x_n)(\mu-\frac{1}{N}\sum_{n=1}^{N}x_n) = $$
-    $$ \mathbb{E}[\mu^2-\frac{2\mu}{N}\sum_{n=1}^{N}x_n+\frac{1}{N}\sum_{n=1}^{N}\sum_{m=1}^{M}x_n x_m] = 
-    \mu^2-\frac{2\mu}{N}\sum_{n=1}^{N}\mathbb{E}[x_n]+\frac{1}{N2}\sum_{n=1}^{N}\sum_{m=1}^{M}\mathbb{E}[x_n x_m] = $$
-    $$ \mu^2-2\mu^2+\frac{1}{N^2}(n(\mu^2\sigma^2)+(N^2-N(\mu^2))) = 
-    \cancel{\mu^2}-\cancel{2\mu^2}+(\cancel{\frac{\mu^2}{N}}+\frac{\sigma^2}{N}+\cancel{\mu^2}-\cancel{\frac{\mu^2}{N}}) = \boxed{\frac{\sigma^2}{N}} $$    
+    $$ \mathbb{E}\left[(\mathbb{E}[\hat{\mu}]-\hat{\mu})^2\right] = \mathbb{E}\left[\left(\mu-\frac{1}{N}\sum_{n=1}^{N}x_n\right)^2\right] = \mathbb{E}\left[\left(\mu-\frac{1}{N}\sum_{n=1}^{N}x_n\right)\left(\mu-\frac{1}{N}\sum_{n=1}^{N}x_n\right)\right] = $$
+    
+    $$ \mathbb{E}\left[\mu^2-\frac{2\mu}{N}\sum_{n=1}^{N}x_n+\frac{1}{N}\sum_{n=1}^{N}\sum_{m=1}^{M}x_n x_m\right] = 
+    \mu^2-\frac{2\mu}{N}\sum_{n=1}^{N}\mathbb{E}[x_n]+\frac{1}{N^2}\sum_{n=1}^{N}\sum_{m=1}^{M}\mathbb{E}[x_n x_m] = $$
+    $$ \mu^2-2\mu^2+\frac{1}{N^2}\left(N(\mu^2+\sigma^2)+(N^2-N)\mu^2\right) = 
+    \cancel{\mu^2}-\cancel{2\mu^2}+\left(\cancel{\frac{\mu^2}{N}}+\frac{\sigma^2}{N}+\cancel{\mu^2}-\cancel{\frac{\mu^2}{N}}\right) = \boxed{\frac{\sigma^2}{N}} $$    
 \end{enumerate}
 
 \item \textbf{Per determinar la velocitat màxima d'un prototip d'avió es van fer 15 proves (caríssimes) amb els resultats 422.2, 418.7, 425.6, 420.3, 425.8, 423.1, 431.5, 428.2, 438.3, 434.0, 411.3, 417.2, 413.5, 441.3, 423.0, expressats en $m/s$. Suposant que aquesta velocitat màxima és gaussiana, quins valors estimaríeu per $\mu$ i per $\sigma$?}

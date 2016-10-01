@@ -56,7 +56,7 @@
 
 $$p(x_n, \sigma^2, \mu) = \frac{1}{\sqrt{2\pi\sigma}} exp\left(-\frac{(x_n - \mu)^2}{2\sigma^2}\right)$$
 
-$$ -l(\theta) = -l(\mu,\sigma^2) = -\sum_{n=1}^2N ln(p(x_n, \mu, \sigma^2)) = - \sum_{n=1}^N ln \left\{\frac{1}{\sqrt{2\pi\sigma}} exp\left(-\frac{(x_n - \mu)^2}{2\sigma^2}\right) \right\}$$
+$$ -l(\theta) = -l(\mu,\sigma^2) = -\sum_{n=1}^N ln(p(x_n, \mu, \sigma^2)) = - \sum_{n=1}^N ln \left\{\frac{1}{\sqrt{2\pi\sigma}} exp\left(-\frac{(x_n - \mu)^2}{2\sigma^2}\right) \right\}$$
 
 \item \textbf{Trobeu els estimadors de màxima versemblança $\hat{\mu}$ i $\hat{\sigma}^2$ per $\mu$ i per $\sigma^2$, a partir de la mostra.}
 
@@ -141,11 +141,23 @@ $$ \mathbb{E}[X_n · X_m] =
 
 \item \textbf{Per determinar la velocitat màxima d'un prototip d'avió es van fer 15 proves (caríssimes) amb els resultats 422.2, 418.7, 425.6, 420.3, 425.8, 423.1, 431.5, 428.2, 438.3, 434.0, 411.3, 417.2, 413.5, 441.3, 423.0, expressats en $m/s$. Suposant que aquesta velocitat màxima és gaussiana, quins valors estimaríeu per $\mu$ i per $\sigma$?}
 
+Utilitzant la fórmula anterior: 
+
+$$ \hat{\mu} = \sum_{n=1}^N \frac{x_n}{N} = 424,93 $$
+
+$$ \hat{\sigma} = \frac{1}{N} \sum_{n=1}^N (x_n - \hat{\mu})^2 = 69 $$
+
 \item \textbf{\emph{[R]} Fixeu unes $ \mu $ i $ \sigma^2 $ al vostre gust i genereu 1.000 mostres aleatòries simples Gaussianes de mida $ N = 50 $ (noteu que no cal emmagatzemar-les); utilitzeu les mostres (que han de ser m.a.s. i independents entre sí) per estimar els biaixos i variàncies dels valors teòrics $ \mu $ i $ \sigma^2 $. Compareu els resultats respecte els valors teòrics dels estimadors.}
 
 En el següent script s'inclou el codi per solucionar el problema. Es creen 1000 conjunts de mida 50 i es calcula $ bias(\mu), bias(\sigma^2), Var(\mu)\text{ i } Var(\sigma^2)$.
 
+<<<<<<< HEAD
 \lstinputlisting[language=R]{L1_Problemes.R}
+=======
+\vspace{0.5cm}
+
+\lstinputlisting[language=R]{L1_problemes.R}
+>>>>>>> 88a4f29a1f7723b0aabf8a9836fe18757ee95bb8
 
 \end{enumerate}
 

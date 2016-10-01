@@ -87,6 +87,10 @@ $$ bias(\hat{\theta}) := \mathbb{E}(\hat{\theta}) - \theta \implies bias(\hat{\m
 
 $$ \mathbb{E}(\hat{\mu}) = \mathbb{E}\underbrace{\left(\sum_{n=1}^N \frac{x_n}{N}\right)}_{\text{trobat abans}} = \frac{1}{N}\sum_{n=1}^N \mathbb{E}(x_n) = \frac{1}{N}\sum_{n=1}^N \mu = \frac{\cancel{N}}{\cancel{N}}\mu = \mu$$
 
+$$ Var(\hat{\mu}) = Var\left(\frac{1}{N} \sum_{n=1}^{N}(x_n)\right) = \frac{1}{N^2} \sum_{n=1}^{N}Var(x_n) = \frac{1}{N^{\cancel{2}}}\cancel{N}\sigma^2 = \boxed{\frac{\sigma^2}{N}}  $$
+
+$$\lim_{N\to\infty} \frac{\sigma^2}{N} = 0$$
+
 % Falta afegir el càlcul del vias de sigma^2
 
 \item \textbf{Calculeu la variança de l'estimador per $\mu$, de 3 maneres (que han de coincidir). Pista: useu que si $X_n, X_m \sim N(\mu, \sigma^2)$, llavors:}

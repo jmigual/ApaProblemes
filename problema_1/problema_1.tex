@@ -3,7 +3,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb,amsfonts}
 \usepackage[catalan]{babel} % Language 
-\usepackage{fontspec}
+% \usepackage{fontspec} <-- AQUESTA LINEA EM PETA (RAUL)
 \usepackage[margin=2cm]{geometry}
 \usepackage{graphicx}
 \usepackage[makeroom]{cancel}
@@ -68,7 +68,10 @@ $$ \mathbb{E}[X_n · X_m] =
 \end{cases}$$
 
 \begin{enumerate}
-    \item Inserint directament el valor de l'estimador i utilitzant les propietats de la variància. 
+    \item Inserint directament el valor de l'estimador i utilitzant les propietats de la variància.
+    
+    $$ Var(\hat{\mu}) = Var(\frac{1}{N^2} \sum_{n=1}^{N}(x_n)) = \frac{1}{N^2} \sum_{n=1}^{N}Var(xn) = \frac{1}{N\cancel{^2}}\cancel{N}\sigma^2 = \boxed{\frac{\sigma^2}{N}}    $$
+    
     \item Usant la coneguda fòrmula $Var[\hat{\theta}] = \mathbb{E}[\hat{\theta}^2] - (\mathbb{E}[\hat{\theta}])^2$.
     \item Utilitzant la definició de la variància $Var[\hat{\theta}] = \mathbb{E}[(\mathbb{E}[\hat{\theta}^2] - \hat{\theta})^2]$.
 \end{enumerate}

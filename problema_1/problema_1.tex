@@ -7,9 +7,39 @@
 \usepackage[margin=2cm]{geometry}
 \usepackage{graphicx}
 \usepackage[makeroom]{cancel}
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.2cm}
+
+\lstset{ % Donat que el paquest listings no té la sintaxi per R definida la hem de definir nosaltres
+    language=R,                     % the language of the code
+    basicstyle=\ttfamily\footnotesize,       % the size of the fonts that are used for the code
+    numbers=left,                   % where to put the line-numbers
+    numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+    stepnumber=1,                   % the step between two line-numbers. If it's 1, each line
+    % will be numbered
+    numbersep=5pt,                  % how far the line-numbers are from the code
+    backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+    showspaces=false,               % show spaces adding particular underscores
+    showstringspaces=false,         % underline spaces within strings
+    showtabs=false,                 % show tabs within strings adding particular underscores
+    frame=single,                   % adds a frame around the code
+    rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+    tabsize=2,                      % sets default tabsize to 2 spaces
+    captionpos=b,                   % sets the caption-position to bottom
+    breaklines=true,                % sets automatic line breaking
+    breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+    title=\lstname,                 % show the filename of files included with \lstinputlisting;
+    % also try caption instead of title
+    keywordstyle=\color{blue},      % keyword style
+    commentstyle=\color{OliveGreen},   % comment style
+    stringstyle=\color{purple},      % string literal style
+    escapeinside={\%*}{*)},         % if you want to add a comment within your code
+    morekeywords={*,...}            % if you want to add more keywords to the set
+} 
+
 
 \title{\textsc{APA Problemes} \\ Problema 3 Màxima versemblança}
 \author{Lluc Bové \and Raúl Ibàñez \and Joan Marcè \and Aleix Trassera}
@@ -90,6 +120,10 @@ $$ \mathbb{E}[X_n · X_m] =
 \item \textbf{Per determinar la velocitat màxima d'un prototip d'avió es van fer 15 proves (caríssimes) amb els resultats 422.2, 418.7, 425.6, 420.3, 425.8, 423.1, 431.5, 428.2, 438.3, 434.0, 411.3, 417.2, 413.5, 441.3, 423.0, expressats en $m/s$. Suposant que aquesta velocitat màxima és gaussiana, quins valors estimaríeu per $\mu$ i per $\sigma$?}
 
 \item \textbf{\emph{[R]} Fixeu unes $ \mu $ i $ \sigma^2 $ al vostre gust i genereu 1.000 mostres aleatòries simples Gaussianes de mida $ N = 50 $ (noteu que no cal emmagatzemar-les); utilitzeu les mostres (que han de ser m.a.s. i independents entre sí) per estimar els biaixos i variàncies dels valors teòrics $ \mu $ i $ \sigma^2 $. Compareu els resultats respecte els valors teòrics dels estimadors.}
+
+En el següent script s'inclou el codi per solucionar el problema. Es creen 1000 conjunts de mida 50 i es calcula $ bias(\mu), bias(\sigma^2), Var(\mu)\text{ i } Var(\sigma^2)$.
+
+\lstinputlisting[language=R]{L1_problemes.R}
 
 \end{enumerate}
 

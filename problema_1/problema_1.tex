@@ -127,22 +127,30 @@ $$ \mathbb{E}[X_n · X_m] =
     \item Usant la coneguda fórmula $Var[\hat{\theta}] = \mathbb{E}[\hat{\theta}^2] - (\mathbb{E}[\hat{\theta}])^2$.
     
     $$ \mathbb{E}[\hat{\mu}^2]  = \mathbb{E}\left[\left(\frac{1}{N^2}\sum_{n=1}^{N}x_n\right)^2\right] =
-    \mathbb{E}\left[\frac{1}{N^2} \left(\sum_{n=1}^{N}x_n\right)\left(\sum_{m=1}^{M}x_m\right)\right] = \frac{1}{N^2}\sum_{n=1}^{N}\sum_{m=1}^{M}\mathbb{E}[x_n x_m] = $$
+    \mathbb{E}\left[\frac{1}{N^2} \left(\sum_{n=1}^{N}x_n\right)\left(\sum_{m=1}^{M}x_m\right)\right] = \underbrace{\frac{1}{N^2}\sum_{n=1}^{N}\sum_{m=1}^{M}\mathbb{E}[x_n x_m]}_\text{i}  = $$
     $$ = \frac{1}{N^2}\left(N(\mu^2+\sigma^2)+(N^2-N)\mu^2\right) = \frac{\cancel{\mu^2}+\sigma^2}{N}+\mu^2-\cancel{\frac{\mu^2}{N}} = \frac{\sigma^2}{N}+\mu^2 $$
     
     $$ (\mathbb{E}[\hat{\mu}])^2 = \left(\mathbb{E}\left[\frac{1}{N}\sum_{n=1}^{N}x_n\right]\right)^2 = \left(\frac{1}{N}\sum_{n=1}^{N}\mu\right)^2 = \left(\frac{1}{\cancel{N}} \cancel{N} \mu\right)^2 = \mu^2 $$
     
     $$ \implies  \mathbb{E}[\hat{\theta}^2] - (\mathbb{E}[\hat{\theta}])^2  = \frac{\sigma^2}{N}+\cancel{\mu^2} - \cancel{\mu^2} = \boxed{\frac{\sigma^2}{N}} $$
     
-    \item Utilitzant la definició de la variància $Var[\hat{\theta}] = \mathbb{E}[(\mathbb{E}[\hat{\theta}] - \hat{\theta})^2]$.
+      \begin{enumerate}
+      	\item aquí usem la propietat que es descriu en l'enunciat.
+      \end{enumerate}
+    \item Utilitzant la definició de la variància 
+    $Var[\hat{\theta}] = \mathbb{E}[(\mathbb{E}[\hat{\theta}] - \hat{\theta})^2]$.
     
     $$ \mathbb{E}\left[(\mathbb{E}[\hat{\mu}]-\hat{\mu})^2\right] = \mathbb{E}\left[\left(\mu-\frac{1}{N}\sum_{n=1}^{N}x_n\right)^2\right] = \mathbb{E}\left[\left(\mu-\frac{1}{N}\sum_{n=1}^{N}x_n\right)\left(\mu-\frac{1}{N}\sum_{n=1}^{N}x_n\right)\right] = $$
     
     $$ \mathbb{E}\left[\mu^2-\frac{2\mu}{N}\sum_{n=1}^{N}x_n+\frac{1}{N}\sum_{n=1}^{N}\sum_{m=1}^{M}x_n x_m\right] = 
     \mu^2-\frac{2\mu}{N}\sum_{n=1}^{N}\mathbb{E}[x_n]+\frac{1}{N^2}\sum_{n=1}^{N}\sum_{m=1}^{M}\mathbb{E}[x_n x_m] = $$
-    $$ \mu^2-2\mu^2+\frac{1}{N^2}\left(N(\mu^2+\sigma^2)+(N^2-N)\mu^2\right) = 
+    $$ \underbrace{\mu^2-2\mu^2+\frac{1}{N^2}\left(N(\mu^2+\sigma^2)+(N^2-N)\mu^2\right)}_\text{i}  = 
     \cancel{\mu^2}-\cancel{2\mu^2}+\left(\cancel{\frac{\mu^2}{N}}+\frac{\sigma^2}{N}+\cancel{\mu^2}-\cancel{\frac{\mu^2}{N}}\right) = \boxed{\frac{\sigma^2}{N}} $$    
+    \begin{enumerate}
+    	\item aquí usem la propietat que es descriu en l'enunciat.
+    \end{enumerate}
 \end{enumerate}
+
 
 \item \textbf{Per determinar la velocitat màxima d'un prototip d'avió es van fer 15 proves (caríssimes) amb els resultats 422.2, 418.7, 425.6, 420.3, 425.8, 423.1, 431.5, 428.2, 438.3, 434.0, 411.3, 417.2, 413.5, 441.3, 423.0, expressats en $m/s$. Suposant que aquesta velocitat màxima és gaussiana, quins valors estimaríeu per $\mu$ i per $\sigma$?}
 

@@ -56,14 +56,29 @@
 
 $$p(x_n, \sigma^2, \mu) = \frac{1}{\sqrt{2\pi\sigma}} exp\left(-\frac{(x_n - \mu)^2}{2\sigma^2}\right)$$
 
-$$ -l(\theta) = -l(\mu,\sigma^2) = -\sum_{n=1}^N ln(p(x_n, \mu, \sigma^2)) = - \sum_{n=1}^N ln \left\{\frac{1}{\sqrt{2\pi\sigma}} exp\left(-\frac{(x_n - \mu)^2}{2\sigma^2}\right) \right\}$$
+$$ 
+l(\theta) = l(\mu,\sigma^2) = \sum_{n=1}^N ln(p(x_n, \mu, \sigma^2)) = 
+\sum_{n=1}^N ln \left\{\frac{1}{\sqrt{2\pi\sigma}} exp\left(-\frac{(x_n - \mu)^2}{2\sigma^2}\right)\right\} =
+$$
+$$
+\sum_{n=1}^N \left\{ ln \left(\frac{1}{\sqrt{2\pi\sigma}}\right) - \frac{(x_n - \mu)^2}{2\sigma^2} \right\} =
+\boxed{N·ln \left(\frac{1}{\sqrt{2\pi\sigma}}\right) - \sum_{n=1}^N \frac{(x_n - \mu)^2}{2\sigma^2}}
+$$
 
 \item \textbf{Trobeu els estimadors de màxima versemblança $\hat{\mu}$ i $\hat{\sigma}^2$ per $\mu$ i per $\sigma^2$, a partir de la mostra.}
 
-$$\text{Màximitzar} l(\theta) \leftrightarrow \text{Minimitzar} -l(\theta)$$
+$$\text{Màximitzar } l(\theta) \leftrightarrow \text{Minimitzar} -l(\theta)$$
 
-$$ \frac{\partial(-l)}{\partial\mu} = -\sum_{n=1}^N \frac{2(x_n - \mu)}{2\sigma^2} = 0 \implies 
-\sum_{n=1}^N x_n - \mu = 0 \implies \sum_{n=1}^N x_n = N·\mu \implies \boxed{\hat{\mu} = \sum_{n=1}^N \frac{x_n}{N}}$$ 
+Primer de tot buscarem la derivada respecte $\mu$ per tal de trobar el valor que minimitza $l(\theta)$:
+
+$$ 
+\frac{\partial(-l)}{\partial\mu} = -\sum_{n=1}^N \frac{\cancel{2}(x_n - \mu)}{\cancel{2}\sigma^2} = 
+\underline{\underline{\frac{1}{\sigma^2} \left(N\mu - \sum_{n=1}^N x_n \right)}}
+$$
+$$
+\sum_{n=1}^N x_n - \mu = 0 \implies \sum_{n=1}^N x_n = N·\mu \implies 
+\boxed{\hat{\mu} = \sum_{n=1}^N \frac{x_n}{N}}
+$$ 
 
 $$
 \frac{\partial(-l)}{\partial\sigma^2} = \frac{N}{2\sigma^2} - \frac{1}{2\sigma^4}\sum_{n=1}^N (x_n - \mu)^2 = 0 \longrightarrow
@@ -73,9 +88,16 @@ $$
 \footnotesize
 \hat{\mu} \text{ i aïllem } \sigma^2 
 \end{aligned} 
-\implies \boxed{\hat{\sigma}^2 = \frac{1}{N} \sum_{n=1}^N (x_n - \hat{\mu})^2} $$
+\implies \boxed{\hat{\sigma}^2 = \frac{1}{N} \sum_{n=1}^N (x_n - \hat{\mu})^2} 
+$$
+
+Així doncs havent substituït a la derivada respecte $\sigma^2$ es pot obtenir el valor de $\hat{\sigma}^2$.
 
 \item \textbf{Demostreu que realment són màxims (i no extrems qualssevol).}
+
+Per demostrar que sigui màxim i no un extrem qualsevol cal fer la 2a derivada i comprovar que sigui positiva.
+
+$$ \frac{\partial^2 (-l)}{\partial^2 \mu} = - $$
 
 $$ \sigma^2 > 0 \implies \frac{\partial^2(-l)}{\partial^2\mu} > 0 \implies \hat{\mu} \text{ és mínim}$$
 

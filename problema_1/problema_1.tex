@@ -2,6 +2,8 @@
 
 \usepackage{amsmath}
 \usepackage{amssymb,amsfonts}
+\usepackage{mathtools}
+\usepackage{boondox-cal}
 \usepackage[catalan]{babel} % Language 
 \usepackage{fontspec}
 \usepackage[margin=2cm]{geometry}
@@ -57,7 +59,7 @@
 $$p(x_n, \sigma^2, \mu) = \frac{1}{\sqrt{2\pi\sigma}} exp\left(-\frac{(x_n - \mu)^2}{2\sigma^2}\right)$$
 
 $$ 
-l(\theta) = l(\mu,\sigma^2) = \sum_{n=1}^N ln(p(x_n, \mu, \sigma^2)) = 
+\mathcal{l}(\theta) = \mathcal{l}(\mu,\sigma^2) = \sum_{n=1}^N ln(p(x_n, \mu, \sigma^2)) = 
 \sum_{n=1}^N ln \left\{\frac{1}{\sqrt{2\pi\sigma}} exp\left(-\frac{(x_n - \mu)^2}{2\sigma^2}\right)\right\} =
 $$
 $$
@@ -67,12 +69,12 @@ $$
 
 \item \textbf{Trobeu els estimadors de màxima versemblança $\hat{\mu}$ i $\hat{\sigma}^2$ per $\mu$ i per $\sigma^2$, a partir de la mostra.}
 
-$$\text{Màximitzar } l(\theta) \leftrightarrow \text{Minimitzar} -l(\theta)$$
+$$\text{Màximitzar } \mathcal{l}(\theta) \leftrightarrow \text{Minimitzar} -\mathcal{l}(\theta)$$
 
 Primer de tot buscarem la derivada respecte $\mu$ per tal de trobar el valor que minimitza $l(\theta)$:
 
 $$ 
-\frac{\partial(-l)}{\partial\mu} = -\sum_{n=1}^N \frac{\cancel{2}(x_n - \mu)}{\cancel{2}\sigma^2} = 
+\frac{\partial(-\mathcal{l})}{\partial\mu} = -\sum_{n=1}^N \frac{\cancel{2}(x_n - \mu)}{\cancel{2}\sigma^2} = 
 \underline{\underline{\frac{1}{\sigma^2} \left(N\mu - \sum_{n=1}^N x_n \right)}}
 $$
 $$
@@ -81,7 +83,7 @@ $$
 $$ 
 
 $$
-\frac{\partial(-l)}{\partial\sigma^2} = \frac{N}{2\sigma^2} - \frac{1}{2\sigma^4}\sum_{n=1}^N (x_n - \mu)^2 = 0 \longrightarrow
+\frac{\partial(-\mathcal{l})}{\partial\sigma^2} = \frac{N}{2\sigma^2} - \frac{1}{2\sigma^4}\sum_{n=1}^N (x_n - \mu)^2 = 0 \longrightarrow
 \begin{aligned}
 \footnotesize
 \text{Substituïm } \mu \text{ per}\\
@@ -95,11 +97,17 @@ Així doncs havent substituït a la derivada respecte $\sigma^2$ es pot obtenir 
 
 \item \textbf{Demostreu que realment són màxims (i no extrems qualssevol).}
 
-Per demostrar que sigui màxim i no un extrem qualsevol cal fer la 2a derivada i comprovar que sigui positiva.
+Per demostrar que sigui màxim i no un extrem qualsevol cal trobar $\frac{\partial^2(-\mathcal{l})}{\partial \mu^2}$ i comprovar que sigui positiva i això voldrà dir que $\hat{\mu}$ és mínim de $-\mathcal{l}$ és a dir que és màxim de $\mathcal{l}$.
 
-$$ \frac{\partial^2 (-l)}{\partial^2 \mu} = - $$
+$$
+\begin{rcases*}
+\frac{\partial^2 (-\mathcal{l})}{\partial \mu^2} = \frac{N}{\sigma^2} \\
+\sigma^2 > 0
+\end{rcases*}
+\implies \frac{\partial^2(-\mathcal{l})}{\partial\mu^2} > 0 \implies \hat{\mu} \text{ és màxim}
+$$
 
-$$ \sigma^2 > 0 \implies \frac{\partial^2(-l)}{\partial^2\mu} > 0 \implies \hat{\mu} \text{ és mínim}$$
+En el cas de $\hat{\sigma}^2$ com que és dependent de $\hat{\mu}$ només hi ha un valor de $\hat{\sigma}^2$ així que sempre serà màxim.
 
 $$ \hat{\sigma}^2 = \frac{1}{N} \sum_{n=1}^N (x_n - \hat{\mu})^2 \rightarrow \hat{\sigma}^2 \text{ és dependent de } \hat{\mu}$$
 

@@ -1,0 +1,85 @@
+\documentclass[a4paper]{article}
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{fontspec}			% utf-8 suport
+\usepackage{amsmath}			% Math utilities
+\usepackage{amssymb}			% Math symbols
+\usepackage{amsfonts}			% More math fonts
+\usepackage{mathtools}			% More math tools (rcases)
+\usepackage[makeroom]{cancel}	% Math cancel
+\usepackage[catalan]{babel} 	% Language 
+\usepackage{listings}			% Code inserting
+\usepackage[dvipsnames]{xcolor}	% Color definitions
+\usepackage{enumitem}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.2cm}
+
+\lstset{ % Donat que el paquest listings no té la sintaxi per R definida la hem de definir nosaltres
+	language=R,                     % the language of the code
+	basicstyle=\ttfamily\footnotesize,       % the size of the fonts that are used for the code
+	numbers=left,                   % where to put the line-numbers
+	numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+	stepnumber=1,                   % the step between two line-numbers. If it's 1, each line
+	% will be numbered
+	numbersep=5pt,                  % how far the line-numbers are from the code
+	backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+	showspaces=false,               % show spaces adding particular underscores
+	showstringspaces=false,         % underline spaces within strings
+	showtabs=false,                 % show tabs within strings adding particular underscores
+	frame=single,                   % adds a frame around the code
+	rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+	tabsize=2,                      % sets default tabsize to 2 spaces
+	captionpos=b,                   % sets the caption-position to bottom
+	breaklines=true,                % sets automatic line breaking
+	breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+	title=\lstname,                 % show the filename of files included with \lstinputlisting;
+	% also try caption instead of title
+	keywordstyle=\color{blue},      % keyword style
+	commentstyle=\color{OliveGreen},   % comment style
+	stringstyle=\color{purple},      % string literal style
+	escapeinside={\%*}{*)},         % if you want to add a comment within your code
+	morekeywords={*,...}            % if you want to add more keywords to the set
+} 
+
+
+\title{\textsc{APA Problemes} \\ Problema 3 Anàlisi discriminant d'en Fisher en acció}
+\author{Lluc Bové \and Raúl Ibáñez \and Joan Marcè \and Aleix Trassera}
+\date{}
+
+\begin{document}
+\maketitle
+
+\textbf{Considerem un problema amb dades bidimensionals i dues classes:}
+
+\begin{align*}
+	C_1 &= \{(4, 1), (2, 4), (2, 3), (3, 6), (4, 4)\} \\
+	C_2 &= \{(9, 10), (6, 8), (9, 5), (8, 7), (10, 8)\}
+\end{align*}
+
+\begin{enumerate}[resume=main]
+	\item \textbf{Calcules les dues mitjanes de classe $m_1$ i $m_2$}
+\end{enumerate}
+
+\begin{enumerate}[resume=main]
+	\item \textbf{Calculeu les dues matrius de dispersió (\emph{scatter}) intra-classe $S_1$ i $S_2$ i la matriu de dispersió intra-classes total $S_W = S_1 + S_2$.}
+\end{enumerate}
+
+\begin{enumerate}[resume=main]
+	\item \textbf{Calculeu la matriu de dispersió inter-classes $S_B$.}
+\end{enumerate}
+
+\begin{enumerate}[resume=main]
+	\item \textbf{Trobeu la direcció de projecció òptima $w^*$ de dues maneres:}
+\end{enumerate}
+
+\begin{enumerate}[resume=second,label=(\alph*),itemindent=1em]
+	\item \textbf{Directament amb la fórmula $w^* = S_W^{-1} (m_1 - m_2)$}
+\end{enumerate}
+
+\begin{enumerate}[resume=second,label=(\alph*),itemindent=1em]
+	\item \textbf{Resolent el problema de vectors propis $(S_W^{-1}S_B)w = \lambda w$.}
+\end{enumerate}
+
+\end{document}

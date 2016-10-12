@@ -61,14 +61,43 @@
 \begin{enumerate}[resume=main]
 	\item \textbf{Calcules les dues mitjanes de classe $m_1$ i $m_2$}
 \end{enumerate}
+A partir de la definició de $\vec{m}_1$ i $\vec{m}_2$ obtenim:
+\begin{align*}
+\vec{m}_1 &:= \frac{1}{|C_1|} \sum_{n \in C_1} \vec{x}_n =
+\frac{1}{5}
+\begin{pmatrix}
+15 \\
+18
+\end{pmatrix}
+\\
+\vec{m}_2 &:= \frac{1}{|C_2|} \sum_{n \in C_2} \vec{x}_n =
+\frac{1}{5}
+\begin{pmatrix}
+42 \\
+38
+\end{pmatrix}
+\end{align*}
 
 \begin{enumerate}[resume=main]
 	\item \textbf{Calculeu les dues matrius de dispersió (\emph{scatter}) intra-classe $S_1$ i $S_2$ i la matriu de dispersió intra-classes total $S_W = S_1 + S_2$.}
 \end{enumerate}
+Partint també de la definició de $S_1$, $S_2$ i $S_W$ obtenim les matrius de dispersió.
+\begin{align*}
+	S_1 &= \sum_{n \in C_1} (x_n - \vec{m}_1)(x_n - \vec{m}_1)^T \\
+	S_2 &= \sum_{n \in C_2} (x_n - \vec{m}_2)(x_n - \vec{m}_2)^T
+\end{align*}
+$$
+S_W = S_1 + S_2 = 
+\sum_{n \in C_1} (x_n - \vec{m}_1)(x_n - \vec{m}_1)^T + 
+\sum_{n \in C_2} (x_n - \vec{m}_2)(x_n - \vec{m}_2)^T
+$$
 
 \begin{enumerate}[resume=main]
 	\item \textbf{Calculeu la matriu de dispersió inter-classes $S_B$.}
 \end{enumerate}
+$$
+S_B = (\vec{m}_2 - \vec{m}_1)(\vec{m}_2 - \vec{m}_1)^T
+$$
 
 \begin{enumerate}[resume=main]
 	\item \textbf{Trobeu la direcció de projecció òptima $w^*$ de dues maneres:}

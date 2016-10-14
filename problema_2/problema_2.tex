@@ -11,7 +11,7 @@
 \usepackage{listings}			% Code inserting
 \usepackage[dvipsnames]{xcolor}	% Color definitions
 \usepackage{enumitem}
-
+\usepackage{graphicx}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.2cm}
@@ -142,8 +142,22 @@ $$
 	\item \textbf{Resolent el problema de vectors propis $(S_W^{-1}S_B)w = \lambda w$.}
 \end{enumerate}
 
+$$
+w^* = 
+\begin{pmatrix}
+0,9195 \\
+ 0,3929
+\end{pmatrix}
+$$
+
+Es pot comprovar que el vector té la mateixa direcció que el  de l'apartat anterior ja que són linealment dependents.
+
 \begin{enumerate}[resume=main]
-	\item \textbf{Representeu gràficament el resultat: dibuxeu les dades, la direcció de projecció òptima $w^*$ i la projecció de les dades}
+	\item \textbf{Representeu gràficament el resultat: dibuixeu les dades, la direcció de projecció òptima $w^*$ i la projecció de les dades}
 \end{enumerate}
+
+El gràfic representa cada una de les classes amb els colors verd i vermell respectivament, la recta representa gràficament la direcció $w^*$
+
+\includegraphics[scale=0.5]{plot}\centering
 
 \end{document}

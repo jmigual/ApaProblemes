@@ -83,20 +83,36 @@ A partir de la definició de $\vec{m}_1$ i $\vec{m}_2$ obtenim:
 \end{enumerate}
 Partint també de la definició de $S_1$, $S_2$ i $S_W$ obtenim les matrius de dispersió.
 \begin{align*}
-	S_1 &= \sum_{n \in C_1} (x_n - \vec{m}_1)(x_n - \vec{m}_1)^T \\
-	S_2 &= \sum_{n \in C_2} (x_n - \vec{m}_2)(x_n - \vec{m}_2)^T
+	S_1 &= \sum_{n \in C_1} (x_n - \vec{m}_1)(x_n - \vec{m}_1)^T = 
+	\begin{pmatrix}
+	4 & -2 \\
+	-2 & 13,2
+	\end{pmatrix} \\
+	S_2 &= \sum_{n \in C_2} (x_n - \vec{m}_2)(x_n - \vec{m}_2)^T = 
+	\begin{pmatrix}
+	9,2 & -0,2 \\
+	0,2 & 13,2
+	\end{pmatrix}
 \end{align*}
 $$
 S_W = S_1 + S_2 = 
 \sum_{n \in C_1} (x_n - \vec{m}_1)(x_n - \vec{m}_1)^T + 
-\sum_{n \in C_2} (x_n - \vec{m}_2)(x_n - \vec{m}_2)^T
+\sum_{n \in C_2} (x_n - \vec{m}_2)(x_n - \vec{m}_2)^T =
+\begin{pmatrix}
+13,2 & -2,2 \\
+-2,2 & 26,4
+\end{pmatrix}
 $$
 
 \begin{enumerate}[resume=main]
 	\item \textbf{Calculeu la matriu de dispersió inter-classes $S_B$.}
 \end{enumerate}
 $$
-S_B = (\vec{m}_2 - \vec{m}_1)(\vec{m}_2 - \vec{m}_1)^T
+S_B = (\vec{m}_2 - \vec{m}_1)(\vec{m}_2 - \vec{m}_1)^T = 
+\begin{pmatrix}
+29,16 & 21,6 \\
+21,6 & 16
+\end{pmatrix}
 $$
 
 \begin{enumerate}[resume=main]
@@ -106,6 +122,21 @@ $$
 \begin{enumerate}[resume=second,label=(\alph*),itemindent=1em]
 	\item \textbf{Directament amb la fórmula $w^* = S_W^{-1} (m_1 - m_2)$}
 \end{enumerate}
+
+$$
+w^* = 
+\begin{pmatrix}
+0,0768 & 0,0064 \\
+0,0064 & 0,03841
+\end{pmatrix} ·
+\begin{pmatrix}
+-5,4 \\ -4
+\end{pmatrix} =
+\begin{pmatrix}
+-0,44 \\
+-0,19
+\end{pmatrix}
+$$
 
 \begin{enumerate}[resume=second,label=(\alph*),itemindent=1em]
 	\item \textbf{Resolent el problema de vectors propis $(S_W^{-1}S_B)w = \lambda w$.}

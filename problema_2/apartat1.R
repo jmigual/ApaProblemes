@@ -10,8 +10,7 @@ within_scatter <- function(mat, m) {
   Sk <- matrix(0, nrow(mat), nrow(mat))
   for (i in 1:ncol(mat)) {
     vaux = mat[,i] - m
-    temp_matrix <- vaux %*% t(vaux)
-    Sk <- Sk + temp_matrix
+    Sk <- Sk + vaux %*% t(vaux)
   }
   return(Sk)
 }
@@ -45,4 +44,17 @@ print(SW)
 m21 <- m2 - m1
 SB <- m21 %*% t(m21)
 printf("SB:")
-print(SB)
+print(SB) 
+
+# Apartat 4a Calcular w*
+wstar <- solve(SW) %*% (m1 - m2)
+printf("W*:")
+print(wstar)
+
+# Apartat 4b Calcular w*
+result <- eigen(solve(SW) %*% SB)$vectors
+print(result)
+N <- ncol(v1)
+par(mfrow=c(1,1))
+plot(c(v1[1,], v2[1,]), c(v1[2,],v2[2,]),col=c(rep('red',N),rep('green',N)))
+abline(-3,wstar[1]/wstar[2],col='black',lwd=2)

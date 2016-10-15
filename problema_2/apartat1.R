@@ -54,6 +54,8 @@ print(wstar)
 # Apartat 4b Calcular w*
 result <- eigen(solve(SW) %*% SB)$vectors
 print(result)
+
+#Apartat 5, representar les dades i w*
 N <- ncol(v1)
 par(mfrow=c(1,1))
 plot(c(v1[1,], v2[1,]), c(v1[2,],v2[2,]),col=c(rep('red',N),rep('green',N)),xlab='',ylab='')

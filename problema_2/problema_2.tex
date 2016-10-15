@@ -141,6 +141,22 @@ $$
 \begin{enumerate}[resume=second,label=(\alph*),itemindent=1em]
 	\item \textbf{Resolent el problema de vectors propis $(S_W^{-1}S_B)w = \lambda w$.}
 \end{enumerate}
+Hem de trobar els vector propis de la matriu $(S_W^{-1}S_B)$. Trobem que té dos vectors propis, ens hem de quedar amb el que té el valor propi més alt. Els vectors propis són els següents:
+
+$$
+v_1 =
+\begin{pmatrix}
+0,9195 \\
+0,3929
+\end{pmatrix}
+v_2 =
+\begin{pmatrix}
+-0,5952 \\  
+0,8035 
+\end{pmatrix}
+$$
+
+I els seus valors propis són $3,1313$ i $0$ respectivament. Així doncs:
 
 $$
 w^* = 
@@ -150,7 +166,9 @@ w^* =
 \end{pmatrix}
 $$
 
-Es pot comprovar que el vector té la mateixa direcció que el  de l'apartat anterior ja que són linealment dependents.
+A més podem comprovar que el vector té la mateixa direcció que el de l'apartat anterior ja que són linealment dependents, és a dir $v_1K = v_2$ on $K$ és un escalar.
+
+
 
 \begin{enumerate}[resume=main]
 	\item \textbf{Representeu gràficament el resultat: dibuixeu les dades, la direcció de projecció òptima $w^*$ i la projecció de les dades}

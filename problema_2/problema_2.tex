@@ -11,7 +11,7 @@
 \usepackage{listings}			% Code inserting
 \usepackage[dvipsnames]{xcolor}	% Color definitions
 \usepackage{enumitem}
-
+\usepackage{graphicx}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.2cm}
@@ -83,20 +83,36 @@ A partir de la definició de $\vec{m}_1$ i $\vec{m}_2$ obtenim:
 \end{enumerate}
 Partint també de la definició de $S_1$, $S_2$ i $S_W$ obtenim les matrius de dispersió.
 \begin{align*}
-	S_1 &= \sum_{n \in C_1} (x_n - \vec{m}_1)(x_n - \vec{m}_1)^T \\
-	S_2 &= \sum_{n \in C_2} (x_n - \vec{m}_2)(x_n - \vec{m}_2)^T
+	S_1 &= \sum_{n \in C_1} (x_n - \vec{m}_1)(x_n - \vec{m}_1)^T = 
+	\begin{pmatrix}
+	4 & -2 \\
+	-2 & 13,2
+	\end{pmatrix} \\
+	S_2 &= \sum_{n \in C_2} (x_n - \vec{m}_2)(x_n - \vec{m}_2)^T = 
+	\begin{pmatrix}
+	9,2 & -0,2 \\
+	0,2 & 13,2
+	\end{pmatrix}
 \end{align*}
 $$
 S_W = S_1 + S_2 = 
 \sum_{n \in C_1} (x_n - \vec{m}_1)(x_n - \vec{m}_1)^T + 
-\sum_{n \in C_2} (x_n - \vec{m}_2)(x_n - \vec{m}_2)^T
+\sum_{n \in C_2} (x_n - \vec{m}_2)(x_n - \vec{m}_2)^T =
+\begin{pmatrix}
+13,2 & -2,2 \\
+-2,2 & 26,4
+\end{pmatrix}
 $$
 
 \begin{enumerate}[resume=main]
 	\item \textbf{Calculeu la matriu de dispersió inter-classes $S_B$.}
 \end{enumerate}
 $$
-S_B = (\vec{m}_2 - \vec{m}_1)(\vec{m}_2 - \vec{m}_1)^T
+S_B = (\vec{m}_2 - \vec{m}_1)(\vec{m}_2 - \vec{m}_1)^T = 
+\begin{pmatrix}
+29,16 & 21,6 \\
+21,6 & 16
+\end{pmatrix}
 $$
 
 \begin{enumerate}[resume=main]
@@ -107,12 +123,59 @@ $$
 	\item \textbf{Directament amb la fórmula $w^* = S_W^{-1} (m_1 - m_2)$}
 \end{enumerate}
 
+$$
+w^* = 
+\begin{pmatrix}
+0,0768 & 0,0064 \\
+0,0064 & 0,03841
+\end{pmatrix} ·
+\begin{pmatrix}
+-5,4 \\ -4
+\end{pmatrix} =
+\begin{pmatrix}
+-0,44 \\
+-0,19
+\end{pmatrix}
+$$
+
 \begin{enumerate}[resume=second,label=(\alph*),itemindent=1em]
 	\item \textbf{Resolent el problema de vectors propis $(S_W^{-1}S_B)w = \lambda w$.}
 \end{enumerate}
+Hem de trobar els vector propis de la matriu $(S_W^{-1}S_B)$. Trobem que té dos vectors propis, ens hem de quedar amb el que té el valor propi més alt. Els vectors propis són els següents:
+
+$$
+v_1 =
+\begin{pmatrix}
+0,9195 \\
+0,3929
+\end{pmatrix}
+v_2 =
+\begin{pmatrix}
+-0,5952 \\  
+0,8035 
+\end{pmatrix}
+$$
+
+I els seus valors propis són $3,1313$ i $0$ respectivament. Així doncs:
+
+$$
+w^* = 
+\begin{pmatrix}
+0,9195 \\
+ 0,3929
+\end{pmatrix}
+$$
+
+A més podem comprovar que el vector té la mateixa direcció que el de l'apartat anterior ja que són linealment dependents, és a dir $v_1K = v_2$ on $K$ és un escalar.
+
+
 
 \begin{enumerate}[resume=main]
-	\item \textbf{Representeu gràficament el resultat: dibuxeu les dades, la direcció de projecció òptima $w^*$ i la projecció de les dades}
+	\item \textbf{Representeu gràficament el resultat: dibuixeu les dades, la direcció de projecció òptima $w^*$ i la projecció de les dades}
 \end{enumerate}
+
+El gràfic representa cada una de les classes amb els colors verd i vermell respectivament, la recta representa gràficament la direcció $w^*$
+
+\includegraphics[scale=0.5]{plot}\centering
 
 \end{document}

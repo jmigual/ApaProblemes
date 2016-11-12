@@ -37,6 +37,58 @@ $$
 	\item \textbf{Escriviu el problema com un sistema lineal}
 \end{enumerate}
 
+Es busca obtenir una funció de l'estil:
+$$
+r = \frac{p}{1 - e \cos\phi} \quad \longrightarrow \quad y(\vec{w}, \vec{x}) = \sum_{i=0}^{M - 1} w_i \phi_i(\vec{x})
+$$
+
+Així doncs es fa la següent transformació
+$$
+r = \frac{p}{1 - e \cos \phi} \implies \frac{1}{r} = \frac{1 - e \cos \phi}{p} 
+\implies \underbrace{r^{-1}}_{t} = 
+\underbrace{p^{-1}}_{w_0}·
+\underbrace{1}_{\mathclap{\phi_0}} +
+\underbrace{\frac{e}{p}}_{w_1}·\underbrace{(-\cos\phi)}_{\phi_1}
+$$
+Per tant s'obtenen els següents vectors:
+$$
+\vec{w} = 
+\begin{pmatrix}
+p^{-1}\\
+e/p
+\end{pmatrix}
+\qquad
+\vec{\phi}(\vec{x}) = \vec{\phi}(\phi)
+\begin{pmatrix}
+1\\
+- \cos \phi 
+\end{pmatrix}
+$$
+
+Així doncs s'obté la següent matriu de disseny:
+$$
+\Phi = 
+\begin{pmatrix}
+1 & -0.64 \\
+1 & -0.52 \\
+1 & 0.25 \\
+1 & 0.38 \\
+1 & 0.94 \\
+\end{pmatrix}
+\qquad
+t =
+\begin{pmatrix}
+0.37 \\
+0.50 \\
+0.62 \\
+0.83 \\
+0.98 \\
+\end{pmatrix}
+$$
+I el sistema lineal que s'obté és:
+$$
+(\Phi^T\Phi)w = \Phi t \implies w = (\Phi^T\Phi)^{-1} \Phi t 
+$$
 \begin{enumerate}[resume]
 	\item \textbf{Trobeu les dues constants $p,e$ per mínims quadrats}
 \end{enumerate}

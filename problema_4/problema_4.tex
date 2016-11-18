@@ -1,0 +1,84 @@
+\documentclass[a4paper]{article}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{fontspec}			% utf-8 suport
+\usepackage{amsmath}			% Math utilities
+\usepackage{amssymb}			% Math symbols
+\usepackage{amsfonts}			% More math fonts
+\usepackage{mathtools}			% More math tools (rcases)
+\usepackage[makeroom]{cancel}	% Math cancel
+\usepackage[catalan]{babel} 	% Language 
+\usepackage{enumitem}			% To resume the enumeration
+\usepackage{gensymb}			% º Symbol
+\usepackage{newunicodechar}		% To add new chars
+\usepackage{pgfplots}
+
+\newunicodechar{º}{\degree}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.2cm}
+
+\title{\textsc{APA Problemes} \\ Problema 7 La fàbrica de píndoles III}
+\author{Lluc Bové \and Raúl Ibáñez \and Joan Marcè \and Aleix Trassera}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\textbf{La companyia de farmacèutica \emph{Smart Pills} (competidora de les anteriors) ha construït una cinta transportadora que porta dues \emph{classes} de píndoles (adequades per dos tipus de malalties diferents), que anomenem $C_1$ i $C_2$. Aquestes píndoles surten en un ombrejat de colors que va del \emph{yellow} al \emph{white} (que és detectat per una càmera, donant un valor continu en $[0,2]$). La companyia fabrica píndoles en proporcions $P(C_1) = \frac{1}{3},\ P(C_2) = \frac{2}{3}$. Se'ns facilita també informació sobre la distribució (contínua) del color per cada classe: }
+$$
+p(x|C_1) = \frac{2 - x}{2} \qquad p(x|C_2) = \frac{x}{2}
+$$
+
+\begin{enumerate}
+	\item \textbf{Quina és la probabilitat d'error si no s'utilitza el color per classificar?}
+\end{enumerate}
+
+Si no s'usa el color per classificar directament es dirà que totes les píndoles són de classe $C_2$ (ja que la probabilitat és més alta). Així doncs la probabilitat d'error és que sigui una píndola de classe $C_1$.
+
+$$
+P(error) = P(C_1) = \frac{1}{3}
+$$
+
+\begin{enumerate}[resume]
+	\item \textbf{Calcular la distribució \emph{incondicional} de color $p(x) = P(C_1)P(x|C_1) + P(C_2)P(x|C_2)$.}
+\end{enumerate}
+$$
+p(x) = P(C_1)P(x|C_1) + P(C_2)P(x|C_2) = \frac{1}{3}·\frac{2 - x}{2} + \frac{2}{3}·\frac{x}{2} = \frac{2 - x}{6} + \frac{2x}{6} = \boxed{\frac{x + 2}{6}}
+$$
+
+\begin{enumerate}[resume]
+	\item \textbf{Calcular les distribucions de probabilitat $P(C_1|x)$ i $P(C_2|x)$.}
+\end{enumerate}
+$$
+P(C_1|x) = \frac{P(x|C_1)P(C_1)}{P(x)} = 
+\frac{\frac{2 - x}{2}·\frac{1}{3}}{\frac{x + 2}{6}} =
+\frac{\frac{2 - x}{6}}{\frac{x + 2}{6}} = \boxed{\frac{2 - x}{x + 2}}
+$$
+$$
+P(C_2|x) = 1 - P(C_1|x) = \frac{x + 2}{x + 2} - \frac{2 - x}{x + 2} =
+\boxed{\frac{2x}{x + 2}}
+$$
+
+\begin{enumerate}[resume]
+	\item \textbf{Quina és la classificació òptima en funció del color?}
+\end{enumerate}
+
+\begin{tikzpicture}
+	
+\end{tikzpicture}
+
+\begin{enumerate}[resume]
+	\item \textbf{Quina és la probabilitat d'error si s'utilitza el color per classificar? Per què és millor que la de l'apartat 1?}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+\end{document}

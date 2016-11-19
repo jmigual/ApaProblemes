@@ -1,7 +1,7 @@
 \documentclass[a4paper]{article}
-\usepackage{fontspec}			% utf-8 suport
 \usepackage[margin=2cm]{geometry}
 
+\usepackage{fontspec}			% utf-8 suport
 \usepackage{amsmath}			% Math utilities
 \usepackage{amssymb}			% Math symbols
 \usepackage{amsfonts}			% More math fonts
@@ -44,7 +44,16 @@ $$
 Si no s'usa el color per classificar directament es dirà que totes les píndoles són de classe $C_2$ (ja que la probabilitat és més alta). Així doncs la probabilitat d'error és que sigui una píndola de classe $C_1$.
 
 $$
-P(error) = P(C_1) = \frac{1}{3}
+P_{error}(R_1) = \min(P(C_1),P(C_2)) = P(C_1) = \frac{1}{3}
+$$
+
+Així doncs la regla de classificació serà la següent:
+$$
+R_1: \text{ la classe de } x =
+\begin{cases}
+C_1 \text{ si } P(C_1) > P(C_2) \\
+C_2 \text{ si } P(C_1) < P(C_2)
+\end{cases}
 $$
 
 \begin{enumerate}[resume]
@@ -70,6 +79,20 @@ $$
 \begin{enumerate}[resume]
 	\item \textbf{Quina és la classificació òptima en funció del color?}
 \end{enumerate}
+En la \autoref{fig:regla} es pot observar que la regla a definir per a la classificació òptima és la següent:
+
+$$
+R_{bayes}: \text{ la classe de } x = 
+\begin{cases}
+C_1 \text{ si } P(C_1|x) > P(C_2|x) \\
+C_2 \text{ si } P(C_1|x) < P(C_2|x)
+\end{cases}
+=
+\begin{cases}
+C_1 \text{ si } \frac{2 - x}{x + 2} > \frac{2x}{x + 2} \\
+C_2 \text{ si } \frac{2 - x}{x + 2} < \frac{2x}{x + 2} \\
+\end{cases}
+$$
 
 \begin{figure}[H]
 	\centering
@@ -84,55 +107,74 @@ $$
 			\pgfpathlineto{\pgfqpoint{0pt}{6.1pt}}
 			\pgfusepath{stroke}
 		}
+		\pgfdeclarepatternformonly{flexible inverted}%
+		{\pgfqpoint{-1pt}{-1pt}}%
+		{\pgfqpoint{10pt}{10pt}}%
+		{\pgfqpoint{6pt}{6pt}}%
+		{
+			\pgfsetlinewidth{1pt}
+			\pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+			\pgfpathlineto{\pgfqpoint{6.1pt}{6.1pt}}
+			\pgfusepath{stroke}
+		}
 		\begin{axis}[
-				xmin=0,xmax=2.1,ymin=0,ymax=1,
+				width=0.7\textwidth,height=0.7\textwidth,
+				xmin=0,xmax=2.1,ymin=0,ymax=1.1,
 				domain=0:2,
 				axis x line=center,
 				axis y line=center,
 				axis on top,
 				samples = 200,
+				legend cell align = left,
+				legend style={at={(0.9,0.5)},anchor=east},
 			]
 			\addplot+[
 				black,
 				mark=none,
 				dashed,
 				very thick]{max((2*x)/(x + 2),(2 - x)/(x + 2))};
-			\addplot+[
+			\addplot[
+				mark=none, 
+				forget plot, 
+				black, 
+				dashed] coordinates {(2/3,0)(2/3,2)};
+			\addplot[
+				white,
+				mark = none,
+				area legend,
+				pattern = flexible hatch,
+				pattern color = black!20!green!40] {1/3} \closedcycle;
+			\addplot[
 				white,
 				mark=none,
 				area legend, 
-				pattern = flexible hatch,	
+				pattern = flexible inverted,	
 				pattern color = orange!40] {min((2*x)/(x + 2),(2 - x)/(x + 2))} \closedcycle;
-			\addplot+[mark=none, red] {(2 - x)/(x + 2)};
-			\addplot+[mark=none, blue] {(2*x)/(x + 2)};
-			\legend{$R_1$, $P_{error}(R_1)$,$P(C_1|X)$, $P(C_2|X)$};
+				\addplot[mark=none, orange]{1/3};
+				\addplot[mark=none, purple]{2/3};
+				\addplot[mark=none, red] {(2 - x)/(x + 2)};
+				\addplot[mark=none, blue] {(2*x)/(x + 2)};
+			\legend{$R_{bayes}$, $ \mathbb{E}(P_{error}(R_1))$,  $\mathbb{E}(P_{error}(R_{bayes}))$,  $P(C_1|X)$, $P(C_2|X)$, $P(C_1)$,$P(C_2)$};
 		\end{axis}
 	\end{tikzpicture}
 	\caption{Gràfic amb la regla per classificar en funció del color i la probabilitat d'error}
 	\label{fig:regla}
 \end{figure}
 
-En la \autoref{fig:regla} es pot observar que la regla a definir per a la classificació òptima és la següent:
-
-$$
-R_1 = 
-\begin{cases}
-C_1 \text{ si } P(C_1|x) > P(C_2|x) \\
-C_2 \text{ si } P(C_1|x) < P(C_2|x)
-\end{cases}
-=
-\begin{cases}
-C_1 \text{ si } \frac{2 - x}{x + 2} > \frac{2x}{x + 2} \\
-C_2 \text{ si } \frac{2 - x}{x + 2} < \frac{2x}{x + 2} \\
-\end{cases}
-$$
-
 \begin{enumerate}[resume]
 	\item \textbf{Quina és la probabilitat d'error si s'utilitza el color per classificar? Per què és millor que la de l'apartat 1?}
 \end{enumerate}
 
-Per obtenir la probabilitat d'error s'ha d'integrar l'àrea sota la corba de les probabilitats $P(C_1|x)$ i $P(C_2|x)$, àrea ombrejada de la \autoref{fig:regla}. És a dir s'ha d'integrar $\min(P(C_1|X),P(C_2|x))$. Es farà una integral per trossos però primer s'ha de buscar el punt d'intersecció de les corbes, és a dir, el punt amb la mateixa probabilitat tant per $C_1$ com per $C_2$.
+Si s'utilitza el color per classificar, la probabilitat d'error és:
+$$
+P_{error}(R_{bayes}) = \min(P(C_1|X),P(C_2|X)) = 
+\boxed{\min\left(\frac{2 - x}{x + 2},\frac{2x}{x + 2}\right)}
+$$
 
+L'error total s'ha d'integrar l'àrea sota la corba de les probabilitats $P(C_1|x)$ i $P(C_2|x)$, àrea ombrejada de la \autoref{fig:regla}. És a dir s'ha d'integrar $\min(P(C_1|X),P(C_2|x))$. Es farà una integral per trossos però primer s'ha de buscar el punt d'intersecció de les corbes, és a dir, el punt amb la mateixa probabilitat tant per $C_1$ com per $C_2$.
+$$
+\mathbb{E}(P_{error}(R_{bayes})) = \int \min(P(C_1|x),P(C_2|x)) dx
+$$
 $$
 P(C_1|x) = P(C_2|x) \implies \frac{2 - x}{x + 2} = \frac{2x}{x + 2} \implies
 2 - x = 2x \implies \boxed{x = \frac{2}{3}}
@@ -180,6 +222,17 @@ du &= dx
 \underline{\underline{4\ln\left(\frac{3}{2} \right)- \frac{4}{3}}}
 \end{align*}
 
+L'error total amb la primera regla és:
+$$
+\mathbb{E}(P_{error}(R_1)) = \int\limits_{0}^{2} P(C_1)dx = 
+\int\limits_{0}^{2}\frac{1}{3}dx = \boxed{\frac{2}{3} = 0.667}
+$$
+
+Com es pot veure l'error total és inferior quan s'utilitza el color que quan no s'utilitza el color.
+$$
+0.667 < 0.471 \implies 
+\mathbb{E}(P_{error}(R_1)) > \mathbb{E}(P_{error}(R_{bayes}))
+$$
 
 
 

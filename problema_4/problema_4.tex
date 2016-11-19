@@ -1,7 +1,7 @@
 \documentclass[a4paper]{article}
+\usepackage{fontspec}			% utf-8 suport
 \usepackage[margin=2cm]{geometry}
 
-\usepackage{fontspec}			% utf-8 suport
 \usepackage{amsmath}			% Math utilities
 \usepackage{amssymb}			% Math symbols
 \usepackage{amsfonts}			% More math fonts
@@ -11,7 +11,13 @@
 \usepackage{enumitem}			% To resume the enumeration
 \usepackage{gensymb}			% º Symbol
 \usepackage{newunicodechar}		% To add new chars
-\usepackage{pgfplots}
+\usepackage{tikz}				% Better drawing options
+\usepackage{pgfplots}			% To add graphs
+\usepackage{float}				% Better positioning with figures
+\usepackage[hidelinks]{hyperref}
+\pgfplotsset{compat=1.13}
+
+\usetikzlibrary{patterns}
 
 \newunicodechar{º}{\degree}
 
@@ -45,7 +51,7 @@ $$
 	\item \textbf{Calcular la distribució \emph{incondicional} de color $p(x) = P(C_1)P(x|C_1) + P(C_2)P(x|C_2)$.}
 \end{enumerate}
 $$
-p(x) = P(C_1)P(x|C_1) + P(C_2)P(x|C_2) = \frac{1}{3}·\frac{2 - x}{2} + \frac{2}{3}·\frac{x}{2} = \frac{2 - x}{6} + \frac{2x}{6} = \boxed{\frac{x + 2}{6}}
+p(x) = P(C_1)P(x|C_1) + P(C_2)P(x|C_2) = \frac{1}{3}·\frac{2 - x}{2} + \frac{2}{3}·\frac{x}{2} = \frac{2 - x}{6} + \frac{2x}{6} = \boxed{\frac{x + 2}{6}} 
 $$
 
 \begin{enumerate}[resume]
@@ -65,16 +71,114 @@ $$
 	\item \textbf{Quina és la classificació òptima en funció del color?}
 \end{enumerate}
 
-\begin{tikzpicture}
-	
-\end{tikzpicture}
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\pgfdeclarepatternformonly{flexible hatch}%
+		{\pgfqpoint{-1pt}{-1pt}}%
+		{\pgfqpoint{10pt}{10pt}}%
+		{\pgfqpoint{6pt}{6pt}}%
+		{
+			\pgfsetlinewidth{1pt}
+			\pgfpathmoveto{\pgfqpoint{6.1pt}{0pt}}
+			\pgfpathlineto{\pgfqpoint{0pt}{6.1pt}}
+			\pgfusepath{stroke}
+		}
+		\begin{axis}[
+				xmin=0,xmax=2.1,ymin=0,ymax=1,
+				domain=0:2,
+				axis x line=center,
+				axis y line=center,
+				axis on top,
+				samples = 200,
+			]
+			\addplot+[
+				black,
+				mark=none,
+				dashed,
+				very thick]{max((2*x)/(x + 2),(2 - x)/(x + 2))};
+			\addplot+[
+				white,
+				mark=none,
+				area legend, 
+				pattern = flexible hatch,	
+				pattern color = orange!40] {min((2*x)/(x + 2),(2 - x)/(x + 2))} \closedcycle;
+			\addplot+[mark=none, red] {(2 - x)/(x + 2)};
+			\addplot+[mark=none, blue] {(2*x)/(x + 2)};
+			\legend{$R_1$, $P_{error}(R_1)$,$P(C_1|X)$, $P(C_2|X)$};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Gràfic amb la regla per classificar en funció del color i la probabilitat d'error}
+	\label{fig:regla}
+\end{figure}
+
+En la \autoref{fig:regla} es pot observar que la regla a definir per a la classificació òptima és la següent:
+
+$$
+R_1 = 
+\begin{cases}
+C_1 \text{ si } P(C_1|x) > P(C_2|x) \\
+C_2 \text{ si } P(C_1|x) < P(C_2|x)
+\end{cases}
+=
+\begin{cases}
+C_1 \text{ si } \frac{2 - x}{x + 2} > \frac{2x}{x + 2} \\
+C_2 \text{ si } \frac{2 - x}{x + 2} < \frac{2x}{x + 2} \\
+\end{cases}
+$$
 
 \begin{enumerate}[resume]
 	\item \textbf{Quina és la probabilitat d'error si s'utilitza el color per classificar? Per què és millor que la de l'apartat 1?}
 \end{enumerate}
 
+Per obtenir la probabilitat d'error s'ha d'integrar l'àrea sota la corba de les probabilitats $P(C_1|x)$ i $P(C_2|x)$, àrea ombrejada de la \autoref{fig:regla}. És a dir s'ha d'integrar $\min(P(C_1|X),P(C_2|x))$. Es farà una integral per trossos però primer s'ha de buscar el punt d'intersecció de les corbes, és a dir, el punt amb la mateixa probabilitat tant per $C_1$ com per $C_2$.
 
-
+$$
+P(C_1|x) = P(C_2|x) \implies \frac{2 - x}{x + 2} = \frac{2x}{x + 2} \implies
+2 - x = 2x \implies \boxed{x = \frac{2}{3}}
+$$
+\begin{align*}
+& \int \min(P(C_1|x),P(C_2|x)) dx = 
+\int \min\left(\frac{2 - x}{x + 2},\frac{2x}{x + 2}\right) dx =
+\int\limits_{0}^{\frac{2}{3}} \frac{2x}{x + 2} dx + 
+\int\limits_{\frac{2}{3}}^{2} \frac{2 - x}{x + 2} dx = \\
+& = \cancel{\frac{4}{3}} + 2\ln\left(\frac{9}{16}\right) + 
+4\ln\left(\frac{3}{2} \right) - \cancel{\frac{4}{3}} = 
+2\ln\left(\frac{9}{16}\right) + 2\ln\left( \frac{9}{4} \right) =
+\boxed{2\ln\left(\frac{81}{64}\right) = \underline{\underline{0,471}}}
+\end{align*}
+\begin{align*}
+\textbullet 
+&\int\limits_{0}^{\frac{2}{3}} \frac{2x}{x + 2} dx =
+\begin{rcases}
+\begin{cases}
+u - 2 &= x  \\
+du &= dx
+\end{cases}
+\end{rcases} =
+2 \int\limits_{2}^{\frac{8}{3}} \frac{u - 2}{u - \cancel{2} + \cancel{2}} du = 
+2 \int\limits_{2}^{\frac{8}{3}}  1 -\frac{2}{u} du = \\
+&= 2 [u - 2\ln(u)]_2^{\frac{8}{3}} = 
+2 \left( \frac{8}{3} - 2\ln\left( \frac{8}{3} \right) \right) - 2 (2 - 2\ln(2)) =
+% Resultat primera integral
+\underline{\underline{\frac{4}{3} + 2\ln\left(\frac{9}{16}\right)}} \\
+% Segona integral
+\textbullet & 
+\int\limits_{\frac{2}{3}}^{2} \frac{2 - x}{x + 2} = 
+\begin{rcases}
+\begin{cases}
+u - 2 &= x  \\
+du &= dx
+\end{cases}
+\end{rcases} =
+\int\limits_{\frac{8}{3}}^4 \frac{2 - (u - 2)}{u - \cancel{2} + \cancel{2}} du =
+\int\limits_{\frac{8}{3}}^4 \frac{4 - u}{u} du =
+\int\limits_{\frac{8}{3}}^4 \frac{4}{u} - 1 \ du = \\
+&= [4\ln(u) - u]_{\frac{8}{3}}^4 = 
+(4\ln(4) - 4) - \left( 4\ln\left( \frac{8}{3}\right) - \frac{8}{3} \right) =
+% Resultat segona integral
+\underline{\underline{4\ln\left(\frac{3}{2} \right)- \frac{4}{3}}}
+\end{align*}
 
 
 

@@ -173,21 +173,21 @@ $$
 
 L'error total s'ha d'integrar l'àrea sota la corba de les probabilitats $P(C_1|x)$ i $P(C_2|x)$, àrea ombrejada de la \autoref{fig:regla}. És a dir s'ha d'integrar $\min(P(C_1|X),P(C_2|x))$. Es farà una integral per trossos però primer s'ha de buscar el punt d'intersecció de les corbes, és a dir, el punt amb la mateixa probabilitat tant per $C_1$ com per $C_2$.
 $$
-\mathbb{E}(P_{error}(R_{bayes})) = \int \min(P(C_1|x),P(C_2|x)) dx
+\mathbb{E}(P_{error}(R_{bayes})) = \int \min(P(C_1|x),P(C_2|x))P(x) dx
 $$
 $$
 P(C_1|x) = P(C_2|x) \implies \frac{2 - x}{x + 2} = \frac{2x}{x + 2} \implies
 2 - x = 2x \implies \boxed{x = \frac{2}{3}}
 $$
 \begin{align*}
-& \int \min(P(C_1|x),P(C_2|x)) dx = 
-\int \min\left(\frac{2 - x}{x + 2},\frac{2x}{x + 2}\right) dx =
-\int\limits_{0}^{\frac{2}{3}} \frac{2x}{x + 2} dx + 
-\int\limits_{\frac{2}{3}}^{2} \frac{2 - x}{x + 2} dx = \\
-& = \cancel{\frac{4}{3}} + 2\ln\left(\frac{9}{16}\right) + 
-4\ln\left(\frac{3}{2} \right) - \cancel{\frac{4}{3}} = 
-2\ln\left(\frac{9}{16}\right) + 2\ln\left( \frac{9}{4} \right) =
-\boxed{2\ln\left(\frac{81}{64}\right) = \underline{\underline{0,471}}}
+& \int \min(P(C_1|x),P(C_2|x))P(x) dx = 
+\int \min\left(\frac{2 - x}{x + 2},\frac{2x}{x + 2}\right)\frac{1}{2} dx =
+\frac{1}{2}\left[\int\limits_{0}^{\frac{2}{3}} \frac{2x}{x + 2} dx + 
+\int\limits_{\frac{2}{3}}^{2} \frac{2 - x}{x + 2} dx \right] = \\
+& = \frac{1}{2}\left[\cancel{\frac{4}{3}} + 2\ln\left(\frac{9}{16}\right) + 
+4\ln\left(\frac{3}{2} \right) - \cancel{\frac{4}{3}}\right] = 
+\ln\left(\frac{9}{16}\right) + \ln\left( \frac{9}{4} \right) =
+\boxed{\ln\left(\frac{81}{64}\right) = \underline{\underline{0,236}}}
 \end{align*}
 \begin{align*}
 \textbullet 
@@ -224,13 +224,13 @@ du &= dx
 
 L'error total amb la primera regla és:
 $$
-\mathbb{E}(P_{error}(R_1)) = \int\limits_{0}^{2} P(C_1)dx = 
-\int\limits_{0}^{2}\frac{1}{3}dx = \boxed{\frac{2}{3} = 0.667}
+\mathbb{E}(P_{error}(R_1)) = \int\limits_{0}^{2} P(C_1)P(x)dx = 
+\int\limits_{0}^{2}\frac{1}{3}·\frac{1}{2}dx = \boxed{\frac{1}{3} = 0,333}
 $$
 
 Com es pot veure l'error total és inferior quan s'utilitza el color que quan no s'utilitza el color.
 $$
-0.667 < 0.471 \implies 
+0,333 > 0,236 \implies 
 \mathbb{E}(P_{error}(R_1)) > \mathbb{E}(P_{error}(R_{bayes}))
 $$
 

@@ -26,8 +26,8 @@ sobrePP <- function(N, tot) {
   data
 }
 
-dades <- sobrePP(10000,tot)
-test <- sobrePP(5000,tot)
+dades <- sobrePP(1000,tot)
+test <- sobrePP(500,tot)
 model.nnet <- nnet(V36 ~., data = dades, size=10, maxit=200, decay=0.01)
 
 p1 <- as.factor(predict (model.nnet, type="class"))
@@ -47,15 +47,20 @@ error_rate.test
 library(lattice)
 library(ggplot2)
 library(caret)
+library(e1071)
 
 # Fem una llista amb posibles 'decays'
 (decays <- 10^seq(-3,0,by=0.1))
 trc <- trainControl (method="repeatedcv", number=10, repeats=10)
-model.10x10CV <- train (V36 ~., data = test, subset=dades, method='nnet', maxit = 500, trace = FALSE,
-                        tuneGrid = expand.grid(.size=20,.decay=decays), trControl=trc)
+model.10x10CV <- train (V36 ~., data = dades, method='nnet', maxit = 200, trace = FALSE,
+                        tuneGrid = expand.grid(.size=10,.decay=decays), trControl=trc)
 
 ## We can inspect the full results
 model.10x10CV$results
 
 ## and the best model found
 model.10x10CV$bestTune
+
+save(model.10x10CV, file = "model.10x10CV.regul")
+
+load ("model.10x10CV.regul")

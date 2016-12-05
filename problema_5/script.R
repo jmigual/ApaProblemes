@@ -87,8 +87,8 @@ model.10x10CV <- train (V36 ~., data = dades, method='nnet', maxit = 200, trace 
 
 # Com que triga molt, hem guardat una execució anterior.
 # Carreguem model.10x10CV i les dades de training i test
-load ("model.10x10CV.regul")
-load ("model.dades")
+load ("/home/raul/APA/ApaProblemes/problema_5/model.10x10CV.regul")
+load ("/home/raul/APA/ApaProblemes/problema_5/model.dades")
 
 # I mirem quin és el millor model per aquestes dades.
 (model.10x10CV$bestTune)
@@ -101,9 +101,9 @@ load ("model.dades")
 #####################
 
 # La nostra mostra de training eren 1000 dades i la de test és de 500 dades.
-# Per tal d'obtenir els mateixos resultats hem guardat les dades de test.
+# Per tal d'obtenir aproximadament mateixos resultats hem guardat les dades de test.
 
-load ("model.test")
+load ("/home/raul/APA/ApaProblemes/problema_5/model.test")
 
 # Ara calculem l'error de training i de test.
 

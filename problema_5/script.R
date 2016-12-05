@@ -2,8 +2,12 @@ rm(list=ls())
 
 library(nnet)
 
+# Llegim l'arxiu letters.txt
+
 tot <- read.table(file.choose())
 lletres = tot[1:35]
+
+# La funció 'canviaLletra' agafa 'una 'lletra' i li canvia alguns bits a l'atzar
 
 canviaLletra <- function(lletra) {
   lletra <- as.integer(lletra[1:35])
@@ -12,6 +16,8 @@ canviaLletra <- function(lletra) {
   lletra[index] = 1 - lletra[index]
   lletra
 }
+
+# La funció 'sobrePP' genera 'N' dades corruptes de les dades 'tot'
 
 sobrePP <- function(N, tot) {
   data <- tot[sample.int(26,N,replace=T),]
@@ -35,3 +41,21 @@ levels(p2) <- LETTERS
 t2 <- table(p2,test$V36)
 error_rate.test <- 100*(1-sum(diag(t2))/nrow(test))
 error_rate.test
+
+# Mirem quins són els millors paràmetres per la nostra xarxa (per cross-validation i amb regularització)
+
+library(lattice)
+library(ggplot2)
+library(caret)
+
+# Fem una llista amb posibles 'decays'
+(decays <- 10^seq(-3,0,by=0.1))
+trc <- trainControl (method="repeatedcv", number=10, repeats=10)
+model.10x10CV <- train (V36 ~., data = test, subset=dades, method='nnet', maxit = 500, trace = FALSE,
+                        tuneGrid = expand.grid(.size=20,.decay=decays), trControl=trc)
+
+## We can inspect the full results
+model.10x10CV$results
+
+## and the best model found
+model.10x10CV$bestTune
